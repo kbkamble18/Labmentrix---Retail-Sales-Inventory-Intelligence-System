@@ -115,4 +115,16 @@
 -- \copy order_items FROM 'C:/Users/Tsex/Documents/Labmentrix/Project_5_Retail Sales & Inventory Intelligence System/data/order_items.csv' WITH (FORMAT CSV, HEADER);
 -- \copy stocks FROM 'C:/Users/Tsex/Documents/Labmentrix/Project_5_Retail Sales & Inventory Intelligence System/data/stocks.csv' WITH (FORMAT CSV, HEADER);
 
-SELECT COUNT(*) FROM brands;
+-- SELECT COUNT(*) FROM order_items;
+-- TRUNCATE TABLE order_items;
+-- SELECT COUNT(*) FROM orders;
+-- COPY order_items 
+-- FROM 'C:/Users/Tsex/Documents/Labmentrix/Project_5_Retail Sales & Inventory Intelligence System/data/order_items.csv' 
+-- WITH (FORMAT CSV, HEADER);
+
+-- sudo -u postgres psql
+
+-- Run this EXACTLY in pgAdmin Query Tool or psql (not Process Watcher)
+copy public.order_items(order_id, item_id, product_id, quantity, list_price, discount) 
+FROM 'C:/temp/order_items.csv' 
+WITH (FORMAT csv, DELIMITER ',', HEADER, ENCODING 'UTF8', QUOTE '"', ESCAPE '"', NULL 'NULL');
