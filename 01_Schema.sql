@@ -125,6 +125,17 @@
 -- sudo -u postgres psql
 
 -- Run this EXACTLY in pgAdmin Query Tool or psql (not Process Watcher)
-copy public.order_items(order_id, item_id, product_id, quantity, list_price, discount) 
-FROM 'C:/temp/order_items.csv' 
+-- copy public.order_items(order_id, item_id, product_id, quantity, list_price, discount) 
+-- FROM 'C:/temp/order_items.csv' 
+-- WITH (FORMAT csv, DELIMITER ',', HEADER, ENCODING 'UTF8', QUOTE '"', ESCAPE '"', NULL 'NULL');
+
+
+-- 1. Check current state
+-- SELECT COUNT(*) FROM public.orders;          -- should >0 after import
+-- SELECT MIN(order_id), MAX(order_id) FROM public.orders;
+-- SELECT * FROM public.orders WHERE order_id = 1 LIMIT 5;
+
+-- 2. If orders empty or missing id=1 → reload orders first (move csv to C:/temp/)
+COPY public.orders(order_id, customer_id, order_status, order_date, required_date, shipped_date, store_id, staff_id) 
+FROM 'C:/temp/orders.csv' 
 WITH (FORMAT csv, DELIMITER ',', HEADER, ENCODING 'UTF8', QUOTE '"', ESCAPE '"', NULL 'NULL');
