@@ -224,7 +224,6 @@
 -- GROUP BY c.category_name
 -- ORDER BY unsold_products DESC;
 
--- --======================================
 -- -- 10. Inventory & Replenishment
 -- SELECT 
 --     s.store_name,
